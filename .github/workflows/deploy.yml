@@ -23,19 +23,14 @@ jobs:
         with:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/nestaway:latest
-
-  ec2:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: appleboy/ssh-action@v1.0.3
+      - name: ec2
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_IP }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nestaway
             docker stop nestaway || true
             docker rm nestaway || true
-            docker run -d --name nestaway -p 5000:5173 ${{ secrets.DOCKERHUB_USERNAME }}/nestaway
-            docker logout
+            docker run -d --name nestaway -p 80:5173 ${{ secrets.DOCKERHUB_USERNAME }}/nestaway
