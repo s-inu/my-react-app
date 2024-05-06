@@ -30,7 +30,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nestaway
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nestaway-frontend
             docker stop nestaway || true
             docker rm nestaway || true
-            docker run -d --name nestaway -p 80:5173 ${{ secrets.DOCKERHUB_USERNAME }}/nestaway
+            docker run -d --name nestaway-frontend -p 80:5173 ${{ secrets.DOCKERHUB_USERNAME }}/nestaway-frontend
