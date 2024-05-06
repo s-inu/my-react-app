@@ -19,6 +19,6 @@ RUN npm run build
 RUN npm install -g serve
 
 # Command to run the app
-CMD ["serve", "-s", "dist", "-l", "80"]
+CMD ["serve", "-s", "dist", "-l", "5173"]
 
 EXPOSE 5173

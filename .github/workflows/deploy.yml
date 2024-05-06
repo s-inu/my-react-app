@@ -22,4 +22,18 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: hub4sam/nestaway:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/nestaway:latest
+
+  ec2:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_IP }}
+          username: ec2-user
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nestaway
+            docker stop nestaway || true
+            docker rm nestaway || true
+            docker run -d --name nestaway -p 5000:5173 ${{ secrets.DOCKERHUB_USERNAME }}/nestaway
