@@ -3,6 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import axios from "axios";
+import FetchURLComponent from "./FetchURLComponent";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <>
+      <FetchURLComponent />
       <div>8888</div>
       <div>{data && JSON.stringify(data, null, 2)}</div>
       <div>
