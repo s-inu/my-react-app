@@ -30,6 +30,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            docker image prune
             cd /opt/nestaway
             docker compose stop
             docker compose up -d --pull always
