@@ -13,7 +13,7 @@ function App() {
     const fetch = async () => {
       console.log("fetching");
 
-      const res = await axios.get("http://backend:3000");
+      const res = await axios.get("http://3.22.240.238:81");
       console.log(res.data);
       setData(res.data);
     };
