@@ -10,6 +10,8 @@ function App() {
 
   useEffect(() => {
     const fetch = async () => {
+      console.log("fetching");
+
       const res = await axios.get("backend://443");
       console.log(res.data);
       setData(res.data);
