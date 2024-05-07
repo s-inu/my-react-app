@@ -12,7 +12,7 @@ function App() {
     const fetch = async () => {
       console.log("fetching");
 
-      const res = await axios.get("backend://443");
+      const res = await axios.get("http://localhost:443");
       console.log(res.data);
       setData(res.data);
     };
